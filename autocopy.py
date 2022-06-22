@@ -1,4 +1,4 @@
-""" python script to copy multiple folders to multiple destinations
+""" python script to copy MC BP & RP folders to multiple destinations
 author: @veedy-dev
 date: 22-06-2022
 version: 1.0
