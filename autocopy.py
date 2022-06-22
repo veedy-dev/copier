@@ -8,6 +8,7 @@ usage: python autocopy.py """
 import os
 import shutil
 from distutils.dir_util import copy_tree
+import json
 
 
 def copyBP(srcBP, dstBP):
@@ -53,20 +54,10 @@ def savePaths():
 
 
 if os.path.exists("paths.json"):
+    # load paths.json and assign key to variables
     with open("paths.json", "r") as f:
-        data = f.read()
-        
-        srcBP = data[data.find("srcBP") + 8:data.find("dstBP") - 1]
-        dstBP = data[data.find("dstBP") + 8:data.find("srcRP") - 1]
-        srcRP = data[data.find("srcRP") + 8:data.find("dstRP") - 1]
-        dstRP = data[data.find("dstRP") + 8:data.find("}") - 1]
-
-        # remove comma from the paths
-        srcBP = srcBP.replace(",", "")
-        dstBP = dstBP.replace(",", "")
-        srcRP = srcRP.replace(",", "")
-        dstRP = dstRP.replace(",", "")
-        
-        print(srcBP, dstBP, srcRP, dstRP)
+        data = json.load(f)
+        copyBP(data["srcBP"], data["dstBP"])
+        copyRP(data["srcRP"], data["dstRP"])
 else:
     savePaths()
