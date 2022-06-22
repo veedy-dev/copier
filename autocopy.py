@@ -46,12 +46,10 @@ def savePaths():
     srcRP = srcRP.replace("\\", "/")
     dstRP = dstRP.replace("\\", "/")
 
+    # dump the paths to a json file
     with open("paths.json", "w") as f:
-        f.write("{\"srcBP\":\"" + srcBP + "\",\"dstBP\":\"" + dstBP +
-                "\",\"srcRP\":\"" + srcRP + "\",\"dstRP\":\"" + dstRP + "\"}")
-        f.close()
+        json.dump({"srcBP": srcBP, "dstBP": dstBP, "srcRP": srcRP, "dstRP": dstRP}, f, indent=4)
     print("Paths saved successfully")
-
 
 if os.path.exists("paths.json"):
     # load paths.json and assign key to variables
