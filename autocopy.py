@@ -51,11 +51,15 @@ def savePaths():
         json.dump({"srcBP": srcBP, "dstBP": dstBP, "srcRP": srcRP, "dstRP": dstRP}, f, indent=4)
     print("Paths saved successfully")
 
-if os.path.exists("paths.json"):
-    # load paths.json and assign key to variables
-    with open("paths.json", "r") as f:
-        data = json.load(f)
-        copyBP(data["srcBP"], data["dstBP"])
-        copyRP(data["srcRP"], data["dstRP"])
-else:
-    savePaths()
+def main():
+    if os.path.exists("paths.json"):
+        # load paths.json and assign key to variables
+        with open("paths.json", "r") as f:
+            data = json.load(f)
+            copyBP(data["srcBP"], data["dstBP"])
+            copyRP(data["srcRP"], data["dstRP"])
+    else:
+        savePaths()
+
+if __name__ == "__main__":
+    main()
